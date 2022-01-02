@@ -97,5 +97,6 @@ class BasicStrategyDictionary(): #will return the course of action to take for t
         return result 
 
 #---------proven to be correct for all occasions----------#
-test = BasicStrategyDictionary([4, 'A'], 'A')
+"""test = BasicStrategyDictionary([4, 'A'], 'A')
 print(test.action_to_take())
+"""

@@ -7,9 +7,9 @@ class Counting():
     def count(self):
         number_of_aces = 0
         number_of_jqk = 0 
-        temp = self.cards
+        
 
-        for value in temp:  
+        for value in self.cards:  
             if value == 'A':
                 number_of_aces += 1
             elif value in ["J", "Q", "K"]:

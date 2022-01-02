@@ -8,10 +8,10 @@ class WinLossPayout():
 
     def result(self):
 
-        total_1 = Counting(self.player_cards)
+        total_1 = Counting(self.player_cards())
         players_total = total_1.count()
 
-        total_2 = Counting(self.dealers_cards)
+        total_2 = Counting(self.dealers_cards())
         dealers_total = total_2.count()
 
         if dealers_total > 21: #checking whether dealer went bust 

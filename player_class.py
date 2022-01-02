@@ -6,12 +6,12 @@ class Player():
         self.cards = players_starting_card_list
         
     def total(self):
-        total = Counting(self.cards)
+        total = Counting(self.cards())
         result = total.count()
         return result 
 
     def hit(self, new_card): #when basic strategy tells us to hit
-        self.cards.append(new_card)
+        self.cards().append(new_card)
         pass
 
     def stand(self): #end turn; always has to be the last call and player's turn will end

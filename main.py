@@ -6,12 +6,7 @@ from basic_strategy_dictionary_class import *
 from counting_technique import *
 from winlosspayout_class import *
 
-print("Shall we start the game?")
-answer = input("Y,N ")
-if answer == "Y":
-    pass
-else:
-    raise Exception("Program has been stopped")
+
 
 
 print("Shuffling cards now")
@@ -24,9 +19,11 @@ while len(cards.deck_of_cards) > 4:
     # Just some simple dealing out of cards to start with
     player = Player(cards.starting_draw)
     dealer = Dealer(cards.starting_draw)
-    
+    print(player.cards())
+    print(dealer.cards())
     # Decide on the betting size 
-    bet = Betting(cards.true_count())
+    bett = Betting(cards.true_count())
+    bet = bett.calculate_bet_size()
     
     temp = dealer.total()
     
@@ -55,7 +52,7 @@ while len(cards.deck_of_cards) > 4:
     
     
     else: #player goes first
-        basic_strategy = BasicStrategyDictionary(player.cards, dealer.cards[0])
+        basic_strategy = BasicStrategyDictionary(player.cards(), dealer.cards()[0])
         action_to_take = basic_strategy.action_to_take() #will be 'Split' 'Double', 'Hit','Stand'
         
         #can only split up to a maximum of 2 times for simplicity sake
@@ -136,6 +133,9 @@ while len(cards.deck_of_cards) > 4:
                     player_starting_amount -= bet
             else:
                 continue
-                    
-    
+    print("-------------------------")
+    print(player.cards())
+    print(dealer.cards())
+    print(player_starting_amount)
+    break
     #after this the loop will restart and a new round of blackjack is played

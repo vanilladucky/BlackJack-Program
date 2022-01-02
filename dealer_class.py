@@ -7,7 +7,7 @@ class Dealer():
         self.cards = dealer_cards_list
         
     def total(self):
-        total = Counting(self.cards)
+        total = Counting(self.cards())
         result = total.count()
         return result 
 
@@ -15,7 +15,7 @@ class Dealer():
         pass
 
     def hit(self, new_card): #when count <= 16
-        self.cards.append(new_card)
+        self.cards().append(new_card)
         pass
 
 #---------proven to be correct for all occasions----------#

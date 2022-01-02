@@ -1,0 +1,69 @@
+"""
+Here are some of the basic rules of BlackJack so that I can implement the game first. How I would go about with this project is to
+    1) Implement the BlackJack game from scratch 
+    2) Implement the HiLo strategy for counting cards 
+
+This would just be a simple implementation of counting cards as of now but I am thinking of implementing some machine learning strategies and maybe some bayesian statistics (prior belief and posterior belief)
+in order to make this algorithm a much more predictive and effective one 
+
+Now let us state down some of the basic rules for BlackJack 
+
+Winning Condition: get closer to 21 than the dealer without going over 21 yourself 
+
+How do I lose: 
+    1) Dealer gets closer to 21 than you 
+    2) You go over 21 
+
+Cards' scores for BlackJack (from here onwards would be referred to as BJ) 
+    2-10 : Face value 
+    Jack, Queen, King = 10 
+    Ace = 1 OR 11 (whichever is better for the hand) 
+
+Game Flow: 
+    Players get two cards, Dealer gets one card showing up and one card faced down 
+    Player always goes first with two option 
+        1) Hit (take more cards)
+        2) Standing (not taking any more cards)
+        3) Splitting (when you have two equal cards)
+            3.1) split the cards and put an equal bet size out for the other card 
+            3.2) but with TWO ACE CARDS, WHEN YOU SPLIT, YOU WOULD GET ONE MORE CARD AND WON'T BE ABLE TO HIT ANYMORE 
+        4) Doubling Down
+            4.1) you will double your bet size, and receive one more card, but WON'T BE ABLE TO HIT ANYMORE
+            4.2) would only do this when you have an ADVANTAGEOUS HAND
+        5) Insurance 
+            5.1) would put down half of your bet on the insurance line 
+            5.2) if the dealer has a BJ, you would lose your hand (50%) but will get paid 2 to 1, so you will get back (100%) == breakeven 
+    For the Dealer: when dealer is below 17, he has to keep on hitting the cards till he goes over 17  
+    After all players get their turn, the dealer then flips and
+        1) if < 17, keep hitting till >= 17
+            1.1) if dealer goes over 21, dealer loses and players are paid 
+        2) if >= 17, those more than the dealer wins and those lesser than the dealer loses and those the same draws
+
+Payout scenarios:
+    1) Player wins: Player doubles his/her payout 
+    2) Player lose: Player lose their entire bet 
+    3) Push(draw): nothing happens 
+    4) Dealt a BlackJack (dealt an ace and a 10) and as long as the dealer doesn't have a BJ: win automatically and paid 1.5 your bet size eg.) if you've bet $400, you will get paid $600
+    5) Dealer goes over 21: Player wins and gets paid 100% of bet size 
+
+
+COUNTING CARDS MECHANICS 
+    1) Assigning value 
+        1.1) 2, 3, 4, 5, 6: +1
+        1.2) 7, 8, 9: 0
+        1.3) 10, J, Q, K, A: -1 
+
+    2) Keep a running count based on these values above (can be used with any number of decks)
+        2.1) the running count keeps on going till further rounds 
+        2.2) have to count the dealer's cards too 
+
+    3) Calculate the Count Per Deck , or True Count 
+        3.1) True Count = Running Count / Divided by # of decks left 
+
+    4) I will be using the 1-8 bet spread (simplicity purposese)
+        4.1) bet 1 unit at a true count of +1 or lower 
+        4.2) bet 2 units at a true count of +2 
+        4.3) bet 4 units at a true count of +3
+        4.4) bet 8 units at a true count of +4 or higher  
+        4.5) will leave the table when the true count is lower than -2 / -3 / -4 to see which versions render the greatest profit (aim of this project)   
+"""
